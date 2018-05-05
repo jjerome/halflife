@@ -18,7 +18,7 @@ extern "C"
 #include "in_defs.h"
 #include "view.h"
 #include "bench.h"
-#include <string.h>
+#include <cstring>
 #include <ctype.h>
 #include "Exports.h"
 

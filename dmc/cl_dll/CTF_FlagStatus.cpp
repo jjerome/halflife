@@ -12,7 +12,7 @@
 #include "pm_defs.h"
 #include "pm_materials.h"
 #include "ref_params.h"
-#include <string.h>
+#include <cstring>
 #include "vgui_viewport.h"
 #include "vgui_ScorePanel.h"
 

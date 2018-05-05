@@ -13,7 +13,7 @@
 #include "pm_movevars.h"
 #include "pm_debug.h"
 
-#include <string.h>
+#include <cstring>
 
 #pragma warning(disable : 4244)
 #pragma warning(disable : 4305)

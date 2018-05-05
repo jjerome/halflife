@@ -7,7 +7,7 @@
 
 #include "archtypes.h"     // DAL
 #include "voice_gamemgr.h"
-#include <string.h>
+#include <cstring>
 #include <assert.h>
 #include "extdll.h"
 #include "util.h"

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -14,18 +14,21 @@
     <ProjectGuid>{69DDADC0-97F4-419E-86EB-C91781A0D2E0}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>hldll</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -42,6 +45,9 @@
     <OutDir>$(Configuration)\$(ProjectName)\</OutDir>
     <IntDir>$(Configuration)\$(ProjectName)\int\</IntDir>
     <TargetName>hl</TargetName>
+    <CodeAnalysisRuleSet>MixedRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -59,6 +65,7 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>..\..\dlls;..\..\engine;..\..\common;..\..\pm_shared;..\..\game_shared;..\..\public;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <EnablePREfast>false</EnablePREfast>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -66,11 +73,10 @@
       <ModuleDefinitionFile>$(ProjectDir)..\..\dlls\hl.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
-      <Command>call ..\..\filecopy.bat $(TargetPath) ..\..\..\game\mod\dlls\$(TargetName).dll
-call ..\..\filecopy.bat $(TargetDir)\$(TargetName).pdb ..\..\..\game\mod\dlls\$(TargetName).pdb</Command>
+      <Command>call ..\..\filecopy.bat $(TargetPath) G:\SteamLibrary\steamapps\common\Half-Life\cyberpunish\dlls\$(TargetName).dll</Command>
     </PostBuildEvent>
     <PostBuildEvent>
-      <Message>Performing Post-Build Event</Message>
+      <Message>Copying To Mod Folder</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -94,8 +100,8 @@ call ..\..\filecopy.bat $(TargetDir)\$(TargetName).pdb ..\..\..\game\mod\dlls\$(
       <ModuleDefinitionFile>$(ProjectDir)..\..\dlls\hl.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
-      <Command>call ..\..\filecopy.bat $(TargetPath) ..\..\..\game\mod\dlls\$(TargetName).dll
-call ..\..\filecopy.bat $(TargetDir)\$(TargetName).pdb ..\..\..\game\mod\dlls\$(TargetName).pdb</Command>
+      <Command>call ..\..\filecopy.bat $(TargetPath) G:\SteamLibrary\steamapps\common\Half-Life\cyberpunish\dlls\$(TargetName).dll
+call ..\..\filecopy.bat $(TargetDir)\$(TargetName).pdb G:\SteamLibrary\steamapps\common\Half-Life\cyberpunish\dlls\$(TargetName).pdb</Command>
     </PostBuildEvent>
     <PostBuildEvent>
       <Message>Performing Post-Build Event</Message>

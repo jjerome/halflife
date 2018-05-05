@@ -18,7 +18,7 @@
 
 #include "cl_util.h"
 #include <assert.h>
-#include <string.h>
+#include <cstring>
 #include <stdio.h>
 #include "parsemsg.h"
 #include "hud_servers.h"

@@ -16,7 +16,7 @@
 #include "event_args.h"
 #include "in_defs.h"
 
-#include <string.h>
+#include <cstring>
 
 // QUAKECLASSIC
 #define Q_SMALL_PUNCHANGLE_KICK		-2

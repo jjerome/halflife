@@ -23,7 +23,7 @@
 #include "parsemsg.h"
 #include "pm_shared.h"
 
-#include <string.h>
+#include <cstring>
 #include <stdio.h>
 
 #include "ammohistory.h"

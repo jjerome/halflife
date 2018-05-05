@@ -20,7 +20,7 @@
 
 #include "hud.h"
 #include "cl_util.h"
-#include <string.h>
+#include <cstring>
 #include "netadr.h"
 #include "vgui_SchemeManager.h"
 

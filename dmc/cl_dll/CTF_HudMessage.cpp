@@ -12,7 +12,7 @@
 #include "pm_defs.h"
 #include "pm_materials.h"
 #include "ref_params.h"
-#include <string.h>
+#include <cstring>
 
 
 #define MAX_BONUS 10

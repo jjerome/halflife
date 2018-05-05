@@ -7,7 +7,7 @@
 
 // view/refresh setup functions
 
-#include <string.h>
+#include <cstring>
 #include "hud.h"
 #include "cl_util.h"
 #include "cvardef.h"

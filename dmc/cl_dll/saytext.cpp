@@ -22,7 +22,7 @@
 #include "cl_util.h"
 #include "parsemsg.h"
 
-#include <string.h>
+#include <cstring>
 #include <stdio.h>
 
 extern float *GetClientColor( int clientIndex );

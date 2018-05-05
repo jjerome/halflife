@@ -27,7 +27,7 @@
 #include "doors.h"
 
 #if !defined ( _WIN32 )
-#include <string.h> // memset())))
+#include <cstring> // memset())))
 #endif
 
 #define SF_BUTTON_DONTMOVE		1

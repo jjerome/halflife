@@ -24,7 +24,7 @@ extern "C"
 #include "camera.h"
 #include "in_defs.h"
 #include "view.h"
-#include <string.h>
+#include <cstring>
 #include <ctype.h>
 #include "vgui_viewport.h"
 #include "voice_status.h"

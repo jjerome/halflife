@@ -25,7 +25,7 @@
 #include "pm_defs.h"
 #include "pmtrace.h"
 
-#include <string.h>
+#include <cstring>
 
 extern vec3_t v_origin;
 extern int	iPrevRenderState;

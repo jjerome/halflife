@@ -20,7 +20,7 @@
 #include "const.h"
 #include "entity_state.h"
 #include "cl_entity.h"
-#include <string.h>
+#include <cstring>
 #include <stdio.h>
 #include "parsemsg.h"
 #include "event_api.h"

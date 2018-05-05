@@ -12,7 +12,7 @@
 #include "triangleapi.h"
 
 #include <stdio.h>
-#include <string.h>
+#include <cstring>
 #include <memory.h>
 #include <math.h>
 

@@ -22,7 +22,7 @@
 
 #include "hud.h"
 #include "cl_util.h"
-#include <string.h>
+#include <cstring>
 #include <stdio.h>
 #include "parsemsg.h"
 

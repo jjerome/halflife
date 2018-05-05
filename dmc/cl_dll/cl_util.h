@@ -25,7 +25,7 @@
 
 #include <stdio.h> // for safe_sprintf()
 #include <stdarg.h> // "
-#include <string.h> // for safe_strcpy()
+#include <cstring> // for safe_strcpy()
 
 
 // Macros to hook function calls into the HUD object
