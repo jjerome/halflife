@@ -11,7 +11,9 @@
 #include <windows.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
+#if GLAUX
 #include <GL/glaux.h>
+#endif
 
 #include "bsp5.h"
 
@@ -51,9 +53,11 @@ void Draw_DrawFace (face_t *f)
 
 void InitWindow (void)
 {
+#if GLAUX
     auxInitDisplayMode (AUX_SINGLE | AUX_RGB);
     auxInitPosition (0, 0, WIN_SIZE, WIN_SIZE);
     auxInitWindow ("qbsp");
+#endif
 }
 
 void Draw_ClearWindow (void)

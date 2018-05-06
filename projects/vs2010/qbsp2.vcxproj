@@ -17,6 +17,7 @@
     <ClInclude Include="..\..\utils\common\scriplib.h" />
     <ClInclude Include="..\..\utils\common\threads.h" />
     <ClInclude Include="..\..\utils\qbsp2\bsp5.h" />
+    <ClInclude Include="..\..\utils\qbsp2\glaux.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\utils\common\bsplib.c" />
@@ -85,7 +86,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;glu32.lib;glaux.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

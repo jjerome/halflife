@@ -949,6 +949,11 @@ int main (int argc, char **argv)
 //
 // check command line flags
 //
+	for (int j = 1; j < argc; j++)
+	{
+		printf("%d : %s", j, argv[j]);
+	}
+
 	for (i=1 ; i<argc ; i++)
 	{
 		if (argv[i][0] != '-')

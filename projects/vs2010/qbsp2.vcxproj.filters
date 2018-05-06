@@ -51,6 +51,9 @@
     <ClInclude Include="..\..\utils\common\scriplib.h">
       <Filter>Header Files\utils\common</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\utils\qbsp2\glaux.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\utils\common\bsplib.c">

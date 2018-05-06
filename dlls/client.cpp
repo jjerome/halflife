@@ -550,6 +550,10 @@ void ClientCommand( edict_t *pEntity )
 	{
 		GetClassPtr((CBasePlayer *)pev)->SelectItem((char *)CMD_ARGV(1));
 	}
+	else if (FStrEq(pcmd, "builddate"))
+	{
+		CLIENT_PRINTF(pEntity, print_console, UTIL_VarArgs("Build was compiled on %s", __DATE__));
+	}
 	else if (((pstr = strstr(pcmd, "weapon_")) != NULL)  && (pstr == pcmd))
 	{
 		GetClassPtr((CBasePlayer *)pev)->SelectItem(pcmd);
