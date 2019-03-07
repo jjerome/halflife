@@ -1991,6 +1991,32 @@ void PM_Duck( void )
 		return;
 	}
 
+	//
+	// Code for sliding (a la Titanfall/Apex Legends)
+	if (pmove->cmd.buttons & IN_RUN && pmove->cmd.buttons & IN_DUCK && !(pmove->flags & FL_DUCKING)) 
+	{
+		const float baseSlideSpeed = 100.0f;
+		// Perform a trace to the ground below. 
+		vec3_t point;
+
+		point[0] = pmove->origin[0];
+		point[1] = pmove->origin[1];
+		point[2] = pmove->origin[2] - 2;
+
+		pmtrace_t tr = pmove->PM_PlayerTrace(pmove->origin, point, PM_NORMAL, -1);
+
+		// The steeper the angle of the surface below us, the better. 
+		pmove->Con_Printf("[PM::Slide] ForwardMove: %f \n", pmove->cmd.forwardmove);
+		pmove->Con_Printf("[PM::Slide] Trace Panel Normal: %f, %f, %f \n", tr.plane.normal[0], tr.plane.normal[1], tr.plane.normal[2]);
+		pmove->cmd.forwardmove += baseSlideSpeed * (tr.plane.normal[2] * 1.0f);
+		pmove->Con_Printf("[PM::Slide] Modified ForwardMove: %f \n", pmove->cmd.forwardmove);
+		pmove->cmd.upmove += 1;
+		pmove->usehull = 1;
+		pmove->view_ofs[2] = VEC_DUCK_VIEW;
+
+		return;
+	}
+
 	if ( pmove->flags & FL_DUCKING )
 	{
 		if (pmove->cmd.buttons & IN_DUCK)

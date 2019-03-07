@@ -264,6 +264,21 @@ struct team_info_t
 //
 //-----------------------------------------------------
 //
+class CHudDevTools : public CHudBase
+{
+public:
+	int Init(void);
+	int VidInit(void);
+	int Draw(float flTime);
+
+private:
+	cvar_t *m_cvarShowPos;
+	Vector m_vecPrevOrigin;
+};
+
+//
+//-----------------------------------------------------
+//
 class CHudDeathNotice : public CHudBase
 {
 public:
@@ -611,6 +626,7 @@ public:
 	CHudTextMessage m_TextMessage;
 	CHudStatusIcons m_StatusIcons;
 	CHudBenchmark	m_Benchmark;
+	CHudDevTools	m_devTools;
 
 	void Init( void );
 	void VidInit( void );

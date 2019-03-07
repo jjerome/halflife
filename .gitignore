@@ -5,3 +5,6 @@
 *.opendb
 *.db
 /projects/vs2010/.vs/utils/v15/Browse.VC.db
+projects/vs2010/.vs/projects/v15/Solution.VC.db-shm
+projects/vs2010/.vs/projects/v15/Solution.VC.db-shm
+projects/vs2010/.vs/projects/v15/Solution.VC.db-wal

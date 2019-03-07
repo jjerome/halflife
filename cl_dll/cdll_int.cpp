@@ -46,6 +46,8 @@ extern "C"
 #include "vgui_TeamFortressViewport.h"
 #include "../public/interface.h"
 
+#include <SDL2\SDL.h>
+
 cl_enginefunc_t gEngfuncs;
 CHud gHUD;
 TeamFortressViewport *gViewPort = NULL;
@@ -174,6 +176,25 @@ so the HUD can reinitialize itself.
 int CL_DLLEXPORT HUD_VidInit( void )
 {
 //	RecClHudVidInit();
+
+	//
+	// SDL_GetWindowFromID uses an internal SDL list. Currently,
+	// GoldSrc/Half-Life only creates one window, so 1
+	// will *always* fetch the correct window. 
+	SDL_Window* gameWindow = SDL_GetWindowFromID(1);
+	if (gameWindow)
+	{
+		if (gEngfuncs.CheckParm("-noborder", nullptr))
+		{
+			SDL_SetWindowBordered(gameWindow, SDL_FALSE);
+
+		}
+		//
+		// Make sure we steal input.
+		SDL_RaiseWindow(gameWindow);
+		SDL_SetWindowGrab(gameWindow, SDL_TRUE);
+	}
+	
 	gHUD.VidInit();
 
 	VGui_Startup();

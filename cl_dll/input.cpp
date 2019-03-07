@@ -441,8 +441,27 @@ void IN_MoverightUp(void)
 	KeyUp(&in_moveright);
 	gHUD.m_Spectator.HandleButtonsUp( IN_MOVERIGHT );
 }
-void IN_SpeedDown(void) {KeyDown(&in_speed);}
-void IN_SpeedUp(void) {KeyUp(&in_speed);}
+
+//
+// EDITED
+void IN_SpeedDown(void) 
+{
+	KeyDown(&in_speed);
+#ifdef CYBERPUNISH
+	gHUD.m_Spectator.HandleButtonsDown(IN_RUN);
+#endif
+}
+
+//
+// EDITED
+void IN_SpeedUp(void) 
+{
+	KeyUp(&in_speed);
+#ifdef CYBERPUNISH
+	gHUD.m_Spectator.HandleButtonsUp(IN_RUN);
+#endif
+}
+
 void IN_StrafeDown(void) {KeyDown(&in_strafe);}
 void IN_StrafeUp(void) {KeyUp(&in_strafe);}
 
@@ -865,6 +884,15 @@ int CL_ButtonBits( int bResetState )
 		bits |= IN_SCORE;
 	}
 
+#ifdef CYBERPUNISH
+	//
+	// ADDED
+	if (in_speed.state & 1)
+	{
+		bits |= IN_RUN;
+	}
+#endif
+
 	// Dead or in intermission? Shore scoreboard, too
 	if ( CL_IsDead() || gHUD.m_iIntermission )
 	{
@@ -988,7 +1016,7 @@ void InitInput (void)
 	cl_forwardspeed		= gEngfuncs.pfnRegisterVariable ( "cl_forwardspeed", "400", FCVAR_ARCHIVE );
 	cl_backspeed		= gEngfuncs.pfnRegisterVariable ( "cl_backspeed", "400", FCVAR_ARCHIVE );
 	cl_sidespeed		= gEngfuncs.pfnRegisterVariable ( "cl_sidespeed", "400", 0 );
-	cl_movespeedkey		= gEngfuncs.pfnRegisterVariable ( "cl_movespeedkey", "0.3", 0 );
+	cl_movespeedkey		= gEngfuncs.pfnRegisterVariable ( "cl_movespeedkey", "1.5", 0 );
 	cl_pitchup			= gEngfuncs.pfnRegisterVariable ( "cl_pitchup", "89", 0 );
 	cl_pitchdown		= gEngfuncs.pfnRegisterVariable ( "cl_pitchdown", "89", 0 );
 

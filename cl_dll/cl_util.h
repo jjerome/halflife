@@ -23,8 +23,8 @@
 #define FALSE 0
 #endif
 
-#include <stdio.h> // for safe_sprintf()
-#include <stdarg.h>  // "
+#include <cstdio> // for safe_sprintf()
+#include <cstdarg>  // "
 #include <cstring> // for strncpy()
 
 // Macros to hook function calls into the HUD object
@@ -194,3 +194,4 @@ inline void UnpackRGB(int &r, int &g, int &b, unsigned long ulRGB)\
 }
 
 HSPRITE LoadSprite(const char *pszName);
+

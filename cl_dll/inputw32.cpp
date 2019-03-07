@@ -22,6 +22,7 @@
 #include "../public/keydefs.h"
 #include "view.h"
 #include "Exports.h"
+#include "StrUtils.h"
 
 #include <SDL2/SDL_mouse.h>
 #include <SDL2/SDL_gamecontroller.h>
@@ -150,6 +151,8 @@ cvar_t	*joy_wwhack1;
 cvar_t	*joy_wwhack2;
 
 int			joy_avail, joy_advancedinit, joy_haspov;
+
+SDL_Window* gameWindow = nullptr;
 
 #ifdef _WIN32
 DWORD	s_hMouseThreadId = 0;
@@ -460,6 +463,30 @@ void IN_MouseMove ( float frametime, usercmd_t *cmd)
 {
 	int		mx, my;
 	vec3_t viewangles;
+
+	if (gameWindow == nullptr) 
+	{
+		//
+		// (lol)
+		SDL_Window* potentialWindow = SDL_GetMouseFocus();
+		if (Str::toLower(SDL_GetWindowTitle(potentialWindow)) == "cyberpunish")
+		{
+			//
+			// We got it.
+			gEngfuncs.Con_Printf("Found the game window!\n");
+			gEngfuncs.Con_Printf("Window ID: %d\n", SDL_GetWindowID(potentialWindow));
+			uint32_t flags = SDL_GetWindowFlags(potentialWindow);
+			gEngfuncs.Con_Printf("OpenGL: %s\n",		(flags & SDL_WINDOW_OPENGL)			? "Yes" : "No");
+			gEngfuncs.Con_Printf("Fullscreen: %s\n",	(flags & SDL_WINDOW_FULLSCREEN)		? "Yes" : "No");
+			gEngfuncs.Con_Printf("Borderless: %s\n",	(flags & SDL_WINDOW_BORDERLESS)		? "Yes" : "No");
+			gEngfuncs.Con_Printf("Grabbed Input: %s\n", (flags & SDL_WINDOW_INPUT_GRABBED)	? "Yes" : "No");
+			gEngfuncs.Con_Printf("Resizable: %s\n",		(flags & SDL_WINDOW_RESIZABLE)		? "Yes" : "No");
+
+			//
+			// Set it for later use.
+			gameWindow = potentialWindow;
+		}
+	}
 
 	gEngfuncs.GetViewAngles( (float *)viewangles );
 
