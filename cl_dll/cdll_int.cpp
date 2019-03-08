@@ -41,7 +41,7 @@ extern "C"
 #include "winsani_out.h"
 #endif
 #include "Exports.h"
-#
+#include "commands.h"
 #include "tri.h"
 #include "vgui_TeamFortressViewport.h"
 #include "../public/interface.h"
@@ -79,17 +79,17 @@ int CL_DLLEXPORT HUD_GetHullBounds( int hullnumber, float *mins, float *maxs )
 
 	switch ( hullnumber )
 	{
-	case 0:				// Normal player
+	case PlayerHull::kStandingHull:				// Normal player
 		mins = Vector(-16, -16, -36);
 		maxs = Vector(16, 16, 36);
 		iret = 1;
 		break;
-	case 1:				// Crouched player
+	case PlayerHull::kDuckingHull:				// Crouched player
 		mins = Vector(-16, -16, -18 );
 		maxs = Vector(16, 16, 18 );
 		iret = 1;
 		break;
-	case 2:				// Point based hull
+	case PlayerHull::kPointHull:				// Point based hull
 		mins = Vector( 0, 0, 0 );
 		maxs = Vector( 0, 0, 0 );
 		iret = 1;
@@ -157,6 +157,9 @@ int CL_DLLEXPORT Initialize( cl_enginefunc_t *pEnginefuncs, int iVersion )
 
 	EV_HookEvents();
 	CL_LoadParticleMan();
+	//
+	// Register our commands. 
+	RegisterCommands();
 
 	// get tracker interface, if any
 	return 1;
@@ -184,13 +187,30 @@ int CL_DLLEXPORT HUD_VidInit( void )
 	SDL_Window* gameWindow = SDL_GetWindowFromID(1);
 	if (gameWindow)
 	{
+		//
+		// TODO: Remove this debug nonsense. Not really important, TBH. 
+		uint32_t flags = SDL_GetWindowFlags(gameWindow);
+		gEngfuncs.Con_Printf("\tOpenGL: %s\n", (flags & SDL_WINDOW_OPENGL) ? "Yes" : "No");
+		gEngfuncs.Con_Printf("\tFullscreen: %s\n", (flags & SDL_WINDOW_FULLSCREEN) ? "Yes" : "No");
+		gEngfuncs.Con_Printf("\tBorderless: %s\n", (flags & SDL_WINDOW_BORDERLESS) ? "Yes" : "No");
+		gEngfuncs.Con_Printf("\tGrabbed Input: %s\n", (flags & SDL_WINDOW_INPUT_GRABBED) ? "Yes" : "No");
+		gEngfuncs.Con_Printf("\tResizable: %s\n", (flags & SDL_WINDOW_RESIZABLE) ? "Yes" : "No");
+
 		if (gEngfuncs.CheckParm("-noborder", nullptr))
 		{
+			//
+			// Unfortunately this does nothing because the window is intiialized with 
+			// the SDL_WINDOW_RESIZABLE flag, which we cannot modify on the older version
+			// of SDL that the game engine is using. The game engine does not load SDL from the 
+			// mod directory so it requires changing the SDL version for the entire half life installation. 
+			// Which we cannot do because VAC dislikes that. 
 			SDL_SetWindowBordered(gameWindow, SDL_FALSE);
 
 		}
+
 		//
-		// Make sure we steal input.
+		// For some bizarre reason the engine is
+		// perfectly fine modifying mouse behavior but not raising the window
 		SDL_RaiseWindow(gameWindow);
 		SDL_SetWindowGrab(gameWindow, SDL_TRUE);
 	}

@@ -33,4 +33,23 @@ char PM_FindTextureType( char *name );
 #define OBS_MAP_FREE			5
 #define OBS_MAP_CHASE			6
 
+enum SpectatorCamModes
+{
+	eSpecCamNone = 0,
+	eSpecCamChaseLocked,
+	eSpecCamChaseFree,
+	eSpecCamRoaming,
+	eSpecCamInEye,
+	eSpecCamMapFree,
+	eSpecCamMapChase
+};
+
+enum PlayerHull
+{
+	kStandingHull = 0,
+	kDuckingHull,
+	kPointHull
+
+};
+
 #endif

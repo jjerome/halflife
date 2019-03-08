@@ -42,14 +42,6 @@
 #include "usercmd.h"
 #endif
 
-enum HullTypes
-{
-	ePlayerHull = 0,
-	eDuckedHull,
-	ePointHull
-
-};
-
 // physent_t
 typedef struct physent_s
 {

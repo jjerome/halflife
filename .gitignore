@@ -8,3 +8,4 @@
 projects/vs2010/.vs/projects/v15/Solution.VC.db-shm
 projects/vs2010/.vs/projects/v15/Solution.VC.db-shm
 projects/vs2010/.vs/projects/v15/Solution.VC.db-wal
+*.db-shm
